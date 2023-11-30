@@ -26,7 +26,7 @@ public class PautaServiceImpl implements PautaService {
         List<Pauta> pautaList = this.pautaRepository.findAll();
 
         return pautaList.stream().map(
-                pauta -> new PautaResponseDTO(pauta.getId(), pauta.getTitulo(), pauta.getDescricao())
+                pauta -> new PautaResponseDTO(pauta.getPautaId(), pauta.getTitulo(), pauta.getDescricao())
         ).collect(Collectors.toList());
     }
 
@@ -35,7 +35,7 @@ public class PautaServiceImpl implements PautaService {
         Pauta pauta = this.pautaRepository.findById(Long.valueOf(id)).
                 orElseThrow(() -> new NotFoundException("Pauta não encontrada."));
 
-        return new PautaResponseDTO(pauta.getId(), pauta.getTitulo(), pauta.getDescricao());
+        return new PautaResponseDTO(pauta.getPautaId(), pauta.getTitulo(), pauta.getDescricao());
     }
 
     @Override
@@ -43,6 +43,6 @@ public class PautaServiceImpl implements PautaService {
         Pauta pauta = new Pauta(dto.getTitulo(), dto.getDescricao());
         pauta = pautaRepository.save(pauta);
 
-        return new PautaResponseDTO(pauta.getId(), pauta.getTitulo(), pauta.getDescricao());
+        return new PautaResponseDTO(pauta.getPautaId(), pauta.getTitulo(), pauta.getDescricao());
     }
 }

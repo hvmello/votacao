@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 public class SessaoServiceImpl implements SessaoService {
@@ -42,7 +41,7 @@ public class SessaoServiceImpl implements SessaoService {
 
         sessaoList.stream().forEach(
                 sessao -> {
-                    final PautaResponseDTO pautaResponseDTO = new PautaResponseDTO(sessao.getPauta().getId(),
+                    final PautaResponseDTO pautaResponseDTO = new PautaResponseDTO(sessao.getPauta().getPautaId(),
                             sessao.getPauta().getTitulo(), sessao.getPauta().getDescricao());
 
                     listaSessaoResponse.add(new SessaoResponseDTO(String.valueOf(sessao.getId()),
@@ -61,7 +60,7 @@ public class SessaoServiceImpl implements SessaoService {
     public SessaoResponseDTO getSessao(String id) {
         Sessao sessao = this.sessaoRepository.findById(Long.valueOf(id)).orElseThrow(() -> new NotFoundException("Sessão não encontrada."));
 
-        final PautaResponseDTO pautaResponseDTO = new PautaResponseDTO(sessao.getPauta().getId(), sessao.getPauta().getTitulo(), sessao.getPauta().getDescricao());
+        final PautaResponseDTO pautaResponseDTO = new PautaResponseDTO(sessao.getPauta().getPautaId(), sessao.getPauta().getTitulo(), sessao.getPauta().getDescricao());
 
         return new SessaoResponseDTO(String.valueOf(sessao.getId()),
                 pautaResponseDTO,
@@ -83,7 +82,7 @@ public class SessaoServiceImpl implements SessaoService {
         Sessao sessao = new Sessao(pauta, minutesToExpiration);
         sessao = this.sessaoRepository.save(sessao);
 
-        final PautaResponseDTO pautaResponseDTO = new PautaResponseDTO(sessao.getPauta().getId(), sessao.getPauta().getTitulo(), sessao.getPauta().getDescricao());
+        final PautaResponseDTO pautaResponseDTO = new PautaResponseDTO(sessao.getPauta().getPautaId(), sessao.getPauta().getTitulo(), sessao.getPauta().getDescricao());
 
         return new SessaoResponseDTO(String.valueOf(sessao.getId()),
                 pautaResponseDTO,
@@ -136,7 +135,7 @@ public class SessaoServiceImpl implements SessaoService {
         if(votosNao < 0) votosNao *= -1;
 
         ResultadoSessaoDTO resultResponseDto = new ResultadoSessaoDTO();
-        final PautaResponseDTO pautaResponseDTO = new PautaResponseDTO(sessao.getPauta().getId(), sessao.getPauta().getTitulo(), sessao.getPauta().getDescricao());
+        final PautaResponseDTO pautaResponseDTO = new PautaResponseDTO(sessao.getPauta().getPautaId(), sessao.getPauta().getTitulo(), sessao.getPauta().getDescricao());
         resultResponseDto.setPauta(pautaResponseDTO);
         resultResponseDto.setVotosSim(votosSim);
         resultResponseDto.setVotosNao(votosNao);
