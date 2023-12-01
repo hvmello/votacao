@@ -5,6 +5,7 @@ public enum Decisao {
     NAO("Não"),
     SIM("Sim");
 
+
     private String voto;
 
     Decisao(String voto){

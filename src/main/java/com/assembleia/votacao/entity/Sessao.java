@@ -1,6 +1,7 @@
 package com.assembleia.votacao.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,17 +12,21 @@ import java.util.Objects;
 public class Sessao {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false, nullable = false, insertable = false, unique = true)
     private Long id;
 
     @ManyToOne
     private Pauta pauta;
+    @Column
     private Integer minutesToExpiration;
-
+    @Column
     private LocalDateTime dataHoraFimVotacaoPauta;
 
     @OneToMany
     private List<Voto> votos;
 
+    @Column
     private boolean fechada;
 
     public Sessao() {
@@ -88,7 +93,7 @@ public class Sessao {
         votos.add(voto);
     }
 
-    public boolean isVotoDuplicado(String cpf){
+    public boolean isVotoDuplicado(String cpf) {
         return this.votos.stream().anyMatch(vote -> vote.getCpf().equals(cpf));
     }
 

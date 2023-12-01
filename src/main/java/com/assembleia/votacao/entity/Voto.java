@@ -1,7 +1,6 @@
 package com.assembleia.votacao.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -9,8 +8,12 @@ import java.util.Objects;
 public class Voto {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false, nullable = false, insertable = false, unique = true)
     private Long id;
+    @Column
     private String cpf;
+    @Column
     private Decisao decisao;
 
     public Voto(String cpf, Decisao decisao) {

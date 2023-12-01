@@ -1,8 +1,6 @@
 package com.assembleia.votacao.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -11,11 +9,14 @@ public class Pauta {
 
 
     @Id
-    @Column
-    private Long pautaId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false, nullable = false, insertable = false, unique = true)
+    private Long id;
 
+    @Column
     private String titulo;
 
+    @Column
     private String descricao;
 
     public Pauta(String titulo, String descricao) {
@@ -27,12 +28,12 @@ public class Pauta {
 
     }
 
-    public Long getPautaId() {
-        return pautaId;
+    public Long getId() {
+        return id;
     }
 
-    public void setPautaId(Long id) {
-        this.pautaId = id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -56,12 +57,12 @@ public class Pauta {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pauta pauta = (Pauta) o;
-        return Objects.equals(pautaId, pauta.pautaId) &&
+        return Objects.equals(id, pauta.id) &&
                 Objects.equals(titulo, pauta.titulo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pautaId, titulo);
+        return Objects.hash(id, titulo);
     }
 }
