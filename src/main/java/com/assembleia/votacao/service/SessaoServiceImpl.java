@@ -43,7 +43,7 @@ public class SessaoServiceImpl implements SessaoService {
         List<SessaoResponseDTO> listaSessaoResponse = new ArrayList<>();
 
 
-        sessaoList.stream().forEach(
+        sessaoList.forEach(
                 sessao -> {
                     final PautaResponseDTO pautaResponseDTO = new PautaResponseDTO(sessao.getPauta().getId(),
                             sessao.getPauta().getTitulo(), sessao.getPauta().getDescricao());
@@ -84,7 +84,7 @@ public class SessaoServiceImpl implements SessaoService {
 
         Integer minutesToExpiration = dto.getMinutosParaFechamentoSessao();
         if (minutesToExpiration == null || minutesToExpiration <= 0)
-            minutesToExpiration = (Integer.parseInt(Objects.requireNonNull(environment.getProperty("default.expiration.minutes"))));
+            minutesToExpiration = (Integer.parseInt(Objects.requireNonNull(environment.getProperty("minutos.para.expirar.sessao.default"))));
 
         Sessao sessao = new Sessao(pauta, minutesToExpiration);
         sessao = this.sessaoRepository.save(sessao);

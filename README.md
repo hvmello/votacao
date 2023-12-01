@@ -24,3 +24,10 @@ uma API REST:
 
 #### Tarefa Bônus 4 - Versionamento da API
     Há diferentes formas de versionamento. Segue na API o versionamento por URL.
+
+
+## Configuração Ambiente
+
+    Java 17
+    Postgres 42.6 - Ao rodar a aplicação as tabelas já são criadas por praticidade. Nome do db = assembleia
+    Maven 3.9.5
