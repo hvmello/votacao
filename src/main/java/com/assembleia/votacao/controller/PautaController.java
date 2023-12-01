@@ -2,6 +2,7 @@ package com.assembleia.votacao.controller;
 
 import com.assembleia.votacao.dto.PautaRequestDTO;
 import com.assembleia.votacao.dto.PautaResponseDTO;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -10,12 +11,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.assembleia.votacao.service.PautaService;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
+@Api(value = "pauta")
 @RestController
-@RequestMapping(value = "api/v1/voting", produces = "application/json")
+@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 86400) // SOMENTE PARA API DE TESTE LOCAL
+@RequestMapping(value = "api/v1/pauta", produces = "application/json")
 public class PautaController {
 
     private final PautaService pautaService;

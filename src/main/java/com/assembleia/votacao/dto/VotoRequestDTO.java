@@ -6,7 +6,7 @@ import com.assembleia.votacao.entity.Decisao;
 public class VotoRequestDTO {
     private Long sessaoId;
     private String cpf;
-    private Decisao decisao;
+    private String decisao;
 
     public Long getSessaoId() {
         return sessaoId;
@@ -24,11 +24,11 @@ public class VotoRequestDTO {
         this.cpf = cpf;
     }
 
-    public Decisao getDecisao() {
+    public String getDecisao() {
         return decisao;
     }
 
-    public void setDecisao(Decisao decisao) {
+    public void setDecisao(String decisao) {
         this.decisao = decisao;
     }
 }
