@@ -7,12 +7,11 @@ import com.assembleia.votacao.entity.Sessao;
 import com.assembleia.votacao.entity.Voto;
 import com.assembleia.votacao.exception.BusinessException;
 import com.assembleia.votacao.exception.NotFoundException;
+import com.assembleia.votacao.repository.PautaRepository;
 import com.assembleia.votacao.repository.SessaoRepository;
 import com.assembleia.votacao.repository.VotoRepository;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
-import com.assembleia.votacao.repository.PautaRepository;
-import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

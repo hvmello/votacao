@@ -1,9 +1,11 @@
 com\assembleia\votacao\dto\ResultadoSessaoDTO.class
 com\assembleia\votacao\VotacaoApplication.class
+com\assembleia\votacao\entity\Error.class
 com\assembleia\votacao\exception\IntegrationException.class
 com\assembleia\votacao\dto\SessaoResponseDTO.class
 com\assembleia\votacao\dto\SessaoRequestDTO.class
 com\assembleia\votacao\repository\PautaRepository.class
+com\assembleia\votacao\repository\VotoRepository.class
 com\assembleia\votacao\exception\BusinessException.class
 com\assembleia\votacao\service\PautaServiceImpl.class
 com\assembleia\votacao\service\PautaService.class
