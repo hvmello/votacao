@@ -22,7 +22,12 @@ uma API REST:
 ### Tarefa Bônus 2 - Mensageria e filas
     Não implementado, porém a utilização do Kafka é possível.
 
-#### Tarefa Bônus 4 - Versionamento da API
+### Tarefa Bônus 3 - Performance
+    Não implementado, JMeter ou Gatling:
+    Ferramentas de teste de carga como o Apache JMeter ou o Gatling podem ser usadas para simular um grande número de solicitações simultâneas e avaliar como a API responde sob carga. Isso ajuda a identificar pontos de estrangulamento e otimizar a performance.
+    É possível utilizar o Kibana e Elasticsearch API REST em um aplicativo Java Spring Boot para monitorar e melhorar o desempenho.
+
+### Tarefa Bônus 4 - Versionamento da API
     Há diferentes formas de versionamento. Segue na API o versionamento por URL.
 
 
@@ -31,3 +36,13 @@ uma API REST:
     Java 17
     Postgres 42.6 - Ao rodar a aplicação as tabelas já são criadas por praticidade. Nome do db = assembleia
     Maven 3.9.5
+
+## Acesso à documentação da API (Swagger)
+
+    localhost:8081/swagger-ui/index.html (8081 por conta da application.properties) 
+    Foram utilizadas @Operations para explicar a função dos protocolos HTTP
+
+## Para executar a API  
+    
+    Pode-se empacotar via maven e gerar o .jar 
+    Executar o .jar com o javac - Lembrando das configurações do ambiente.
