@@ -30,6 +30,13 @@ uma API REST:
 ### Tarefa Bônus 4 - Versionamento da API
     Há diferentes formas de versionamento. Segue na API o versionamento por URL.
 
+## Funcionamento da API
+
+    A lógica utilizada para a criação de sessões de votação.
+    
+    É necessário criar uma pauta antes de criar uma sessão. Conforme o mapeamento das entidades é possível comprovar isso.
+    Então criamos uma pauta e posteriormente criamos uma sessão passando o id da pauta como parâmetro para iniciar uma votação.
+
 
 ##  Ambiente
 
