@@ -6,7 +6,6 @@ import com.assembleia.votacao.dto.VotoRequestDTO;
 import com.assembleia.votacao.dto.VotoResponseDTO;
 import com.assembleia.votacao.service.SessaoService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,7 +37,7 @@ public class SessaoController {
         return ResponseEntity.ok(this.sessaoService.listarSessoes());
     }
 
-    @Operation(summary = "obter sessao por id", description = "sessao precisa existir")
+    @Operation(summary = "Obter sessão por id", description = "sessao precisa existir")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Sessão Encontrada.")})
     @GetMapping("/{id}")
     public ResponseEntity<?> get(@PathVariable String id) {
