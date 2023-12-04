@@ -18,7 +18,7 @@ public class Sessao {
     @ManyToOne
     private Pauta pauta;
     @Column
-    private Integer minutesToExpiration;
+    private Integer minutosParaExpirarSessao;
     @Column
     private LocalDateTime dataHoraFimVotacaoPauta;
 
@@ -32,10 +32,10 @@ public class Sessao {
         this.votos = new ArrayList<>();
     }
 
-    public Sessao(Pauta pauta, Integer minutesToExpiration) {
+    public Sessao(Pauta pauta, Integer minutosParaExpirarSessao) {
         this.pauta = pauta;
-        this.minutesToExpiration = minutesToExpiration;
-        this.dataHoraFimVotacaoPauta = LocalDateTime.now().plusSeconds(minutesToExpiration * 60);
+        this.minutosParaExpirarSessao = minutosParaExpirarSessao;
+        this.dataHoraFimVotacaoPauta = LocalDateTime.now().plusSeconds(minutosParaExpirarSessao * 60);
         this.votos = new ArrayList<>();
     }
 
@@ -56,12 +56,12 @@ public class Sessao {
         this.pauta = pauta;
     }
 
-    public Integer getMinutesToExpiration() {
-        return minutesToExpiration;
+    public Integer getMinutosParaExpirarSessao() {
+        return minutosParaExpirarSessao;
     }
 
-    public void setMinutesToExpiration(Integer minutesToExpiration) {
-        this.minutesToExpiration = minutesToExpiration;
+    public void setMinutosParaExpirarSessao(Integer minutesToExpiration) {
+        this.minutosParaExpirarSessao = minutesToExpiration;
     }
 
     public LocalDateTime getDataHoraFimVotacaoPauta() {
@@ -103,12 +103,12 @@ public class Sessao {
         if (o == null || getClass() != o.getClass()) return false;
         Sessao sessao = (Sessao) o;
         return Objects.equals(id, sessao.id) &&
-                Objects.equals(minutesToExpiration, sessao.minutesToExpiration);
+                Objects.equals(minutosParaExpirarSessao, sessao.minutosParaExpirarSessao);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, minutesToExpiration);
+        return Objects.hash(id, minutosParaExpirarSessao);
     }
 
 

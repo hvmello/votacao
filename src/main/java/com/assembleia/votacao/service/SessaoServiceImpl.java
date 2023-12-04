@@ -49,7 +49,7 @@ public class SessaoServiceImpl implements SessaoService {
 
                     listaSessaoResponse.add(new SessaoResponseDTO(String.valueOf(sessao.getId()),
                             pautaResponseDTO,
-                            sessao.getMinutesToExpiration(),
+                            sessao.getMinutosParaExpirarSessao(),
                             sessao.getDataHoraFimVotacaoPauta(),
                             sessao.getVotos(),
                             sessao.isFechada()));
@@ -70,7 +70,7 @@ public class SessaoServiceImpl implements SessaoService {
 
         return new SessaoResponseDTO(String.valueOf(sessao.getId()),
                 pautaResponseDTO,
-                sessao.getMinutesToExpiration(),
+                sessao.getMinutosParaExpirarSessao(),
                 sessao.getDataHoraFimVotacaoPauta(),
                 sessao.getVotos(),
                 sessao.isFechada());
@@ -92,7 +92,7 @@ public class SessaoServiceImpl implements SessaoService {
 
         return new SessaoResponseDTO(String.valueOf(sessao.getId()),
                 pautaResponseDTO,
-                sessao.getMinutesToExpiration(),
+                sessao.getMinutosParaExpirarSessao(),
                 sessao.getDataHoraFimVotacaoPauta(),
                 sessao.getVotos(),
                 sessao.isFechada());
@@ -100,9 +100,14 @@ public class SessaoServiceImpl implements SessaoService {
 
     @Override
     public VotoResponseDTO adicionarVoto(VotoRequestDTO dto) {
+
+        if (Objects.isNull(dto.getSessaoId()) || Objects.isNull(dto.getDecisao())) {
+            throw new BusinessException("Os campos Id da Sessão e a decisão do voto são obrigatórios");
+        }
+
         Sessao sessao = this.sessaoRepository.findById(dto.getSessaoId()).orElseThrow(() -> new NotFoundException("Sessão não encontrada."));
 
-        final Decisao decisao = Decisao.valueOf(dto.getDecisao());
+        final Decisao decisao = getDecisao(dto);
 
         validaVoto(sessao, dto);
 
@@ -114,19 +119,36 @@ public class SessaoServiceImpl implements SessaoService {
         return new VotoResponseDTO(true);
     }
 
+    private static Decisao getDecisao(VotoRequestDTO dto) {
+        if (!dto.getDecisao().trim().isEmpty()) {
+            try {
+
+                return Decisao.valueOf(dto.getDecisao().trim().toUpperCase().replace("Ã", "A"));
+
+            } catch (IllegalArgumentException e) {
+                throw new BusinessException("O valor do voto deve ser 'Sim' ou 'Não'.");
+            }
+        } else {
+            throw new NotFoundException("A descrição do voto informado não foi encontrado.");
+        }
+
+
+    }
+
     private void validaVoto(Sessao sessao, VotoRequestDTO dto) {
 
         if (!sessao.isFechada() && sessao.getDataHoraFimVotacaoPauta().isBefore(LocalDateTime.now())) {
+            // PODEMOS FAZER A SESSAO SER FECHADA VIA SCHEDULE TAMBEM EM DETERMINADO TEMPO SER FECHADA
             sessao.setFechada(true);
         }
-
+        // VALIDAR NESSA ORDEM CONSOME MENOS RECURSOS
         if (sessao.isFechada())
             throw new BusinessException("Votação encerrada.");
 
         if (sessao.isVotoDuplicado(dto.getCpf()))
             throw new BusinessException("A pessoa com este CPF já votou");
 
-        if (cpfValidatorService.isAbleToVote(dto.getCpf()))
+        if (!cpfValidatorService.isAbleToVote(dto.getCpf()))
             throw new BusinessException("CPF inserido não tem permissão para votar.");
     }
 

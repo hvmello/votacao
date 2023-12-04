@@ -20,7 +20,7 @@ import java.net.URISyntaxException;
 @RestController
 @Api(value = "sessao")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 86400) // SOMENTE PARA API DE TESTE LOCAL
-@RequestMapping(value = "sessao", produces = "application/json")
+@RequestMapping(value = "api/v1/sessao", produces = "application/json")
 public class SessaoController {
 
     private final SessaoService sessaoService;
