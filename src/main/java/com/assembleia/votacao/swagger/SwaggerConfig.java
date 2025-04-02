@@ -14,7 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-	private static final String api_package = "com.assembleia.votacao";
+
 
 	@Bean
 	public Docket api() {

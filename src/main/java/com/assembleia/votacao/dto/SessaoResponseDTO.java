@@ -2,7 +2,6 @@ package com.assembleia.votacao.dto;
 
 import com.assembleia.votacao.entity.Voto;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
