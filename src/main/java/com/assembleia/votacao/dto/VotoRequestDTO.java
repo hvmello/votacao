@@ -1,7 +1,6 @@
 package com.assembleia.votacao.dto;
 
 
-import com.assembleia.votacao.entity.Decisao;
 
 public class VotoRequestDTO {
     private Long sessaoId;
