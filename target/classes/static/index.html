@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API de Assembleias e Votações</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        h1 {
+            color: #333;
+        }
+        .status {
+            margin-top: 20px;
+            font-weight: bold;
+            color: green;
+        }
+        .swagger-link {
+            margin-top: 20px;
+            display: block;
+            font-size: 18px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .swagger-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vindo à API de Assembleias e Votações</h1>
+        <p>Esta API permite a criação e gerenciamento de assembleias e votações.</p>
+        <p>Consulte a documentação para mais detalhes sobre os endpoints disponíveis.</p>
+        <p class="status" id="api-status">Verificando status...</p>
+        <a class="swagger-link" href="http://localhost:8081/swagger-ui/index.html#/" target="_blank">📜 Acesse a Documentação Swagger</a>
+    </div>
+
+    <script>
+        // Simula uma verificação do status da API
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                document.getElementById("api-status").innerText = "API Online ✅";
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

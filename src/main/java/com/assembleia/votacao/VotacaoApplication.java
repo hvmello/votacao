@@ -15,7 +15,7 @@ public class VotacaoApplication {
 
     @RequestMapping("/")
     public String home(){
-        return "API Votação!";
+        return "index.html";
     }
 
     @Bean
